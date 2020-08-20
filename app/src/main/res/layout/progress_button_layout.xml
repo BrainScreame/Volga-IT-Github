@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/cardViewButtonProgress"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/progress_button_height"
+    app:cardCornerRadius="@dimen/progress_button_corner_radius">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayoutButtonProgress"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:minHeight="@dimen/progress_button_height">
+
+
+        <TextView
+            android:id="@+id/textViewButtonProgress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/button_login_web"
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_size_progress_button"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ProgressBar
+            android:id="@+id/progressBarButtonProgress"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="@dimen/progress_bar_button_size"
+            android:layout_height="@dimen/progress_bar_button_size"
+            android:layout_marginEnd="@dimen/progress_bar_button_margin_end"
+            android:backgroundTintMode="src_atop"
+            android:indeterminateTint="@color/black"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/textViewButtonProgress"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.cardview.widget.CardView>

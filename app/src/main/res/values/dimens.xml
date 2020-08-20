@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="progress_button_height">60dp</dimen>
+    <dimen name="progress_button_corner_radius">20dp</dimen>
+    <dimen name="progress_bar_button_size">30dp</dimen>
+    <dimen name="progress_bar_button_margin_end">20dp</dimen>
+    <dimen name="text_size_progress_button">20sp</dimen>
+    <dimen name="github_image_size">200dp</dimen>
+    <dimen name="github_image_margin_top">150dp</dimen>
+    <dimen name="progress_button_margin_top">40dp</dimen>
+    <dimen name="progress_button_margin_start">30dp</dimen>
+    <dimen name="progress_button_margin_end">20dp</dimen>
+</resources>

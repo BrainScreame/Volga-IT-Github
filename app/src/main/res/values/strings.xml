@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">MyGitHub</string>
+
+    <string name="button_login_web">Web авторизация</string>
+    <string name="button_load">Загрузка…</string>
+    <string name="button_done">Готово</string>
+    <string name="error_get_token">Не удалось получить токен авторизациии</string>
 </resources>
