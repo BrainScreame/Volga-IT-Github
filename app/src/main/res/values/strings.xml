@@ -5,4 +5,6 @@
     <string name="button_load">Загрузка…</string>
     <string name="button_done">Готово</string>
     <string name="error_get_token">Не удалось получить токен авторизациии</string>
+    <string name="text_error_more_info">Не удулась загрузить данные</string>
+
 </resources>

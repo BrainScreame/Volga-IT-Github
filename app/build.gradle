@@ -27,6 +27,10 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
     }
 
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_1_8.toString()
+    }
+
 }
 
 dependencies {
@@ -43,14 +47,14 @@ dependencies {
     kapt 'com.jakewharton:butterknife-compiler:10.2.0'
 
     //Retrofit
-    implementation 'com.squareup.retrofit2:adapter-rxjava3:2.9.0'
+    implementation 'com.squareup.retrofit2:adapter-rxjava2:2.7.2'
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.6.0'
 
     //RX
-    implementation 'io.reactivex.rxjava3:rxandroid:3.0.0'
-    implementation 'io.reactivex.rxjava3:rxjava:3.0.0'
-    implementation "io.reactivex.rxjava3:rxkotlin:3.0.0"
+    implementation 'io.reactivex.rxjava2:rxandroid:2.1.1'
+    implementation 'io.reactivex.rxjava2:rxjava:2.2.18'
+    implementation "io.reactivex.rxjava2:rxkotlin:2.4.0"
 
     //OkHttp
     implementation 'com.squareup.okhttp3:okhttp:4.7.2'
@@ -68,12 +72,19 @@ dependencies {
 
     // ui
     implementation 'com.google.android.material:material:1.2.0'
-    implementation "androidx.constraintlayout:constraintlayout:2.0.0-rc1"
+    implementation "androidx.constraintlayout:constraintlayout:2.0.1"
     implementation "androidx.recyclerview:recyclerview:1.1.0"
     implementation "androidx.cardview:cardview:1.0.0"
     implementation "com.android.support:design:29.0.0"
 
     //Timber
     implementation 'com.jakewharton.timber:timber:4.7.1'
+
+    //Glide
+    implementation 'com.github.bumptech.glide:glide:4.11.0'
+    kapt 'com.github.bumptech.glide:compiler:4.11.0'
+
+    //Circle Image
+    implementation 'de.hdodenhof:circleimageview:3.1.0'
 
 }

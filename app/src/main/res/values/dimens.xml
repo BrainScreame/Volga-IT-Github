@@ -5,9 +5,40 @@
     <dimen name="progress_bar_button_size">30dp</dimen>
     <dimen name="progress_bar_button_margin_end">20dp</dimen>
     <dimen name="text_size_progress_button">20sp</dimen>
+
     <dimen name="github_image_size">200dp</dimen>
     <dimen name="github_image_margin_top">150dp</dimen>
+
     <dimen name="progress_button_margin_top">40dp</dimen>
     <dimen name="progress_button_margin_start">30dp</dimen>
     <dimen name="progress_button_margin_end">20dp</dimen>
+    <dimen name="progress_bar_more_info">20dp</dimen>
+
+    <dimen name="drawable_padding">4dp</dimen>
+
+    <dimen name="item_repository_margin_top">8dp</dimen>
+    <dimen name="item_repository_margin_horizontal">8dp</dimen>
+    <dimen name="item_repository_corner_radius">20dp</dimen>
+
+    <dimen name="text_view_name_repository_margin_start">16dp</dimen>
+    <dimen name="text_view_name_repository_margin_top">16dp</dimen>
+
+    <dimen name="text_view_description_repository_margin_top">8dp</dimen>
+    <dimen name="text_view_description_repository_margin_start">16dp</dimen>
+    <dimen name="text_view_description_repository_margin_end">16dp</dimen>
+
+    <dimen name="linear_layout_more_info_margin_start">16dp</dimen>
+    <dimen name="linear_layout_more_info_margin_top">8dp</dimen>
+    <dimen name="linear_layout_more_info_margin_end">16dp</dimen>
+
+    <dimen name="image_view_user_avatar_size">30dp</dimen>
+    <dimen name="image_view_user_avatar_margin_start">16dp</dimen>
+    <dimen name="image_view_user_avatar_margin_top">8dp</dimen>
+    <dimen name="image_view_user_avatar_margin_bottom">8dp</dimen>
+
+    <dimen name="text_view_user_name_margin_top">12dp</dimen>
+    <dimen name="text_view_user_name_margin_start">16dp</dimen>
+
+
+
 </resources>

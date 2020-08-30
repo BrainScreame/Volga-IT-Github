@@ -1,11 +1,9 @@
 package com.osenov.mygithub.data.network
 
 import com.osenov.mygithub.data.model.AccessToken
-import io.reactivex.rxjava3.core.Single
-import retrofit2.http.Field
-import retrofit2.http.FormUrlEncoded
-import retrofit2.http.Headers
-import retrofit2.http.POST
+import com.osenov.mygithub.data.model.Repository
+import io.reactivex.Single
+import retrofit2.http.*
 
 
 interface LoginGithubClient {
@@ -18,5 +16,4 @@ interface LoginGithubClient {
         @Field("client_secret") client_secret: String,
         @Field("code") code: String
     ): Single<AccessToken>
-
 }

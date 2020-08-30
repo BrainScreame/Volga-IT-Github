@@ -4,10 +4,10 @@ import android.net.Uri
 import com.osenov.mygithub.ApiClient
 import com.osenov.mygithub.data.DataManager
 import com.osenov.mygithub.di.scope.ConfigPersistent
-import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
-import io.reactivex.rxjava3.disposables.Disposable
-import io.reactivex.rxjava3.kotlin.subscribeBy
-import io.reactivex.rxjava3.schedulers.Schedulers
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.disposables.Disposable
+import io.reactivex.rxkotlin.subscribeBy
+import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
 @ConfigPersistent
@@ -15,19 +15,19 @@ class LoginPresenter
 @Inject
 constructor(private val dataManager: DataManager) : LoginContract.Presenter() {
 
-    private var subscription: Disposable? = null
+    private var disposable: Disposable? = null
 
     override fun detachView() {
         super.detachView()
-        subscription?.dispose()
+        disposable?.dispose()
     }
 
     override fun authorization(uri: Uri) {
         view.showProgress()
         val code = uri.getQueryParameter("code")
 
-        subscription?.dispose()
-        subscription = code?.let {
+        disposable?.dispose()
+        disposable = code?.let {
             dataManager.getLoginToken(it)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())

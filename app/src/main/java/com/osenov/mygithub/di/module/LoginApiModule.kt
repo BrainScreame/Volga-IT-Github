@@ -8,7 +8,7 @@ import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
-import retrofit2.adapter.rxjava3.RxJava3CallAdapterFactory
+import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Singleton
 
@@ -17,25 +17,11 @@ class LoginApiModule {
 
     @Provides
     @Singleton
-    fun provideGson(): Gson {
-        return GsonBuilder()
-                .create()
-    }
-
-    @Provides
-    @Singleton
-    fun provideOkHttpClient(): OkHttpClient {
-        return OkHttpClient()
-    }
-
-    @Provides
-    @Singleton
-    fun provideLoginGithubService(okHttpClient: OkHttpClient, gson: Gson): LoginGithubClient {
+    fun provideLoginGithubService(): LoginGithubClient {
         return Retrofit.Builder()
-                .client(okHttpClient)
                 .baseUrl(LOGIN_URL)
-                .addConverterFactory(GsonConverterFactory.create(gson))
-                .addCallAdapterFactory(RxJava3CallAdapterFactory.create())
+                .addConverterFactory(GsonConverterFactory.create(Gson()))
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .build()
                 .create(LoginGithubClient::class.java)
     }
