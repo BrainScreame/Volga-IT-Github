@@ -1,5 +1,6 @@
 package com.osenov.mygithub.ui.main
 
+import com.osenov.mygithub.ApiClient
 import com.osenov.mygithub.data.DataManager
 import com.osenov.mygithub.data.model.Repository
 import com.osenov.mygithub.di.scope.ConfigPersistent
@@ -74,6 +75,11 @@ constructor(private val dataManager: DataManager) : MainContract.Presenter() {
             )
 
 
+    }
+
+    override fun exitAccount() {
+        dataManager.preferencesHelper.clear()
+        view.showLoginActivity()
     }
 
 }

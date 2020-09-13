@@ -10,9 +10,11 @@ object MainContract {
         fun showError(message: String)
         fun showRepositories(repositories: ArrayList<Repository>)
         fun updateItemRepository(index: Int, repository: Repository)
+        fun showLoginActivity()
     }
 
     abstract class Presenter : BasePresenter<View>() {
         abstract fun showRepositoryList()
+        abstract fun exitAccount()
     }
 }
