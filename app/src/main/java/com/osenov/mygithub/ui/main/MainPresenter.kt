@@ -35,6 +35,7 @@ constructor(private val dataManager: DataManager) : MainContract.Presenter() {
 
     override fun showRepositoryList() {
         disposable?.dispose()
+        indexCounter = 0
         disposable = dataManager.getRepositories()
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())

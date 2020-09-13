@@ -7,6 +7,7 @@ import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import butterknife.BindView
 import butterknife.ButterKnife
 import com.osenov.mygithub.R
@@ -32,11 +33,17 @@ class MainActivity : BaseActivity(), MainContract.View,
     @BindView(R.id.progressBar)
     lateinit var progressBar: ProgressBar
 
+    @BindView(R.id.swipeRefreshLayoutRepositories)
+    lateinit var swipeRefreshLayoutRepositories: SwipeRefreshLayout
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         activityComponent.inject(this)
         setContentView(R.layout.activity_main)
         init()
+        swipeRefreshLayoutRepositories.setOnRefreshListener {
+            presenter.showRepositoryList()
+        }
     }
 
     private fun init() {
@@ -50,6 +57,7 @@ class MainActivity : BaseActivity(), MainContract.View,
     }
 
     override fun showRepositories(repositories: ArrayList<Repository>) {
+        swipeRefreshLayoutRepositories.isRefreshing = false
         progressBar.visibility = View.GONE
         recyclerViewRepositories.layoutManager = LinearLayoutManager(this)
         repositoriesAdapter.setData(repositories)
