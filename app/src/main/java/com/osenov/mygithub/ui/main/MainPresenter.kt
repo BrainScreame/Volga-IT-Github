@@ -17,9 +17,7 @@ constructor(private val dataManager: DataManager) : MainContract.Presenter() {
 
     private var disposable: Disposable? = null
     private var repositories: ArrayList<Repository> = ArrayList()
-
-    //so probably not right
-    var counterList = 0
+    private var indexCounter = 0
 
     override fun attachView(view: MainContract.View) {
         super.attachView(view)
@@ -64,16 +62,13 @@ constructor(private val dataManager: DataManager) : MainContract.Presenter() {
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(
                 {
-                    repositories[counterList] = it
-                    view.updateItemRepository(counterList, it)
-                    counterList++
+                    repositories[indexCounter] = it
+                    view.updateItemRepository(indexCounter, it)
+                    indexCounter++
                 },
                 {
                     it.message?.let { it1 -> view.showError(it1) }
-                    counterList = 0
-                },
-                {
-                    counterList = 0
+                    indexCounter = 0
                 }
             )
 

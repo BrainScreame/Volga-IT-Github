@@ -39,6 +39,7 @@
     <dimen name="text_view_user_name_margin_top">12dp</dimen>
     <dimen name="text_view_user_name_margin_start">16dp</dimen>
 
-
+    <dimen name="text_scrim_height_top">50dp</dimen>
+    <dimen name="text_scrim_height_bottom">88dp</dimen>
 
 </resources>

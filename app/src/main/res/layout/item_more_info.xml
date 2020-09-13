@@ -1,6 +1,63 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/linearLayoutMoreInfo"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <LinearLayout
+        android:id="@+id/linearLayoutMoreInfoState"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:visibility="visible">
+
+        <TextView
+            android:id="@+id/textViewLanguage"
+            app:drawableLeftCompat="@drawable/ic_dot"
+            tools:text="Language"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:drawablePadding="@dimen/drawable_padding"
+            android:textColor="@color/black" />
+
+        <TextView
+            android:id="@+id/textViewStars"
+            app:drawableLeftCompat="@drawable/ic_baseline_star_border_24"
+            tools:text="star"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:drawablePadding="@dimen/drawable_padding"
+            android:textColor="@color/black" />
+
+        <TextView
+            android:id="@+id/textViewForks"
+            app:drawableLeftCompat="@drawable/ic_fork"
+            tools:text="fork"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:drawablePadding="@dimen/drawable_padding"
+            android:textColor="@color/black" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayoutMoreInfoLoad"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center">
+
+        <ProgressBar
+            android:id="@+id/progressBarMoreInfo"
+            android:layout_width="@dimen/progress_bar_more_info"
+            android:layout_height="@dimen/progress_bar_more_info" />
+
+    </LinearLayout>
+
+
+</LinearLayout>

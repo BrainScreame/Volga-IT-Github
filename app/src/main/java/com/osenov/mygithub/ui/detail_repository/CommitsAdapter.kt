@@ -1,4 +1,4 @@
-package com.osenov.mygithub.ui.main
+package com.osenov.mygithub.ui.detail_repository
 
 import android.content.Context
 import android.os.Bundle
@@ -16,90 +16,62 @@ import com.bumptech.glide.Glide
 import com.osenov.mygithub.R
 import com.osenov.mygithub.REPOSITORY_MORE_INFO
 import com.osenov.mygithub.data.model.Repository
+import com.osenov.mygithub.data.model.RepositoryCommit
 import com.osenov.mygithub.data.model.RepositoryMoreInfo
 import com.osenov.mygithub.di.scope.ActivityContext
 import com.osenov.mygithub.util.LanguageColorHelper
 import de.hdodenhof.circleimageview.CircleImageView
+import java.text.SimpleDateFormat
+import java.util.*
 import javax.inject.Inject
+import kotlin.collections.ArrayList
 
 
-class RepositoriesAdapter
-@Inject constructor(@ActivityContext private val context: Context) :
-    RecyclerView.Adapter<RepositoriesAdapter.ViewHolderRepositories>() {
+class CommitsAdapter
+@Inject constructor() :
+    RecyclerView.Adapter<CommitsAdapter.ViewHolderCommits>() {
 
-    private lateinit var repositories: ArrayList<Repository>
-    private lateinit var clickListener: OnRepositoryItemClickListener
+    private lateinit var repositoryCommit: ArrayList<RepositoryCommit>
+    private lateinit var clickListener: OnCommitItemClickListener
 
-    fun setData(repositories: ArrayList<Repository>) {
-        this.repositories = repositories
+    fun setData(repositoryCommit: ArrayList<RepositoryCommit>) {
+        this.repositoryCommit = repositoryCommit
     }
 
-    fun setItemRepository(index: Int, repository: Repository) {
-        val diffPayLoad = Bundle()
-        diffPayLoad.putParcelable(REPOSITORY_MORE_INFO, repository.repositoryMoreInfo)
-        notifyItemChanged(index, diffPayLoad)
+
+    interface OnCommitItemClickListener {
+        fun onItemClickRepository(item: RepositoryCommit, position: Int)
     }
 
-    interface OnRepositoryItemClickListener {
-        fun onItemClickRepository(item: Repository, position: Int)
-    }
-
-    fun setOnItemClickListener(listener: OnRepositoryItemClickListener) {
+    fun setOnItemClickListener(listener: OnCommitItemClickListener) {
         clickListener = listener
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolderRepositories {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolderCommits {
         val view: View = LayoutInflater.from(parent.context).inflate(
-            R.layout.item_repository,
+            R.layout.item_commits,
             parent,
             false
         )
-        return ViewHolderRepositories(context, view)
+        return ViewHolderCommits(view)
     }
 
-    override fun onBindViewHolder(
-        holder: ViewHolderRepositories,
-        position: Int,
-        payloads: MutableList<Any>
-    ) {
-        if (payloads.isEmpty()) {
-            onBindViewHolder(holder, position)
-        } else {
-            val bundle = payloads[0] as Bundle
-            val moreInfo: RepositoryMoreInfo? = bundle.getParcelable(REPOSITORY_MORE_INFO)
-            if (moreInfo != null) {
-                holder.bindMoreInfo(moreInfo)
-            }
-        }
-    }
-
-    override fun onBindViewHolder(holder: ViewHolderRepositories, position: Int) {
-        holder.bind(repositories[position], clickListener)
+    override fun onBindViewHolder(holder: ViewHolderCommits, position: Int) {
+        holder.bind(repositoryCommit[position], clickListener)
     }
 
     override fun getItemCount(): Int {
-        return repositories.size
+        return repositoryCommit.size
     }
 
-    class ViewHolderRepositories constructor(private val context: Context, itemView: View) :
-        RecyclerView.ViewHolder(
-            itemView
-        ) {
+    class ViewHolderCommits constructor(itemView: View) :
+        RecyclerView.ViewHolder(itemView) {
 
-        @BindView(R.id.textViewNameRepository)
-        lateinit var textViewNameRepository: TextView
+        @BindView(R.id.textViewNameCommit)
+        lateinit var textViewNameCommit: TextView
 
-        @BindView(R.id.textViewDescriptionRepository)
-        lateinit var textViewDescriptionRepository: TextView
-
-        @BindView(R.id.textViewLanguage)
-        lateinit var textViewLanguage: TextView
-
-        @BindView(R.id.textViewStars)
-        lateinit var textViewStars: TextView
-
-        @BindView(R.id.textViewForks)
-        lateinit var textViewForks: TextView
+        @BindView(R.id.textViewDateCommit)
+        lateinit var textViewDateCommit: TextView
 
         @BindView(R.id.imageViewUserAvatar)
         lateinit var imageViewUserAvatar: CircleImageView
@@ -107,63 +79,26 @@ class RepositoriesAdapter
         @BindView(R.id.textViewUserName)
         lateinit var textViewUserName: TextView
 
-        @BindView(R.id.linearLayoutMoreInfoState)
-        lateinit var linearLayoutMoreInfoState: LinearLayout
-
-        @BindView(R.id.linearLayoutMoreInfoLoad)
-        lateinit var linearLayoutMoreInfoLoad: LinearLayout
-
         init {
             ButterKnife.bind(this, itemView)
-            itemView.setOnClickListener {}
         }
 
-        fun bindMoreInfo(moreInfo: RepositoryMoreInfo) {
-            linearLayoutMoreInfoLoad.visibility = View.GONE
-            linearLayoutMoreInfoState.visibility = View.VISIBLE
+        fun bind(repositoryCommit: RepositoryCommit, action: OnCommitItemClickListener) {
 
-            if (moreInfo.language != null) {
-                textViewLanguage.text = moreInfo.language
+            textViewNameCommit.text = repositoryCommit.commit.message
+            textViewDateCommit.text =
+                SimpleDateFormat("hh:mm:ss dd.MM.yyyy", Locale.getDefault())
+                    .format(repositoryCommit.commit.committer.date)
 
-                val tintColor = LanguageColorHelper.getColor(context, moreInfo.language)
-                var drawable = ContextCompat.getDrawable(context, R.drawable.ic_dot)
-                if (drawable != null) {
-                    drawable = DrawableCompat.wrap(drawable)
-                    DrawableCompat.setTint(drawable.mutate(), tintColor!!)
-                    drawable.setBounds(0, 0, drawable.intrinsicWidth, drawable.intrinsicHeight)
-                }
-                textViewLanguage.setCompoundDrawables(drawable, null, null, null)
-
-            } else {
-                textViewLanguage.visibility = View.GONE
-            }
-            textViewStars.text = moreInfo.stars
-            textViewForks.text = moreInfo.forks
-        }
-
-        fun bind(repository: Repository, action: OnRepositoryItemClickListener) {
-            linearLayoutMoreInfoState.visibility = View.GONE
-            linearLayoutMoreInfoLoad.visibility = View.VISIBLE
-
-            textViewNameRepository.text = repository.name
-
-            if (repository.description == null) {
-                textViewDescriptionRepository.visibility = View.GONE
-            } else {
-                textViewDescriptionRepository.text = repository.description
-            }
-
-            if (repository.repositoryMoreInfo != null) {
-                bindMoreInfo(repository.repositoryMoreInfo!!)
-            }
 
             Glide.with(itemView)
-                .load(repository.owner.avatar)
+                .load(repositoryCommit.author?.avatar)
+                .placeholder(R.drawable.ic_baseline_account_circle_24)
                 .into(imageViewUserAvatar)
-            textViewUserName.text = repository.owner.name
+            textViewUserName.text = repositoryCommit.commit.committer.name
 
             itemView.setOnClickListener {
-                action.onItemClickRepository(repository, adapterPosition)
+                action.onItemClickRepository(repositoryCommit, adapterPosition)
             }
 
         }

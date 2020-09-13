@@ -4,6 +4,7 @@ import com.osenov.mygithub.CLIENT_ID
 import com.osenov.mygithub.CLIENT_SECRET
 import com.osenov.mygithub.data.model.AccessToken
 import com.osenov.mygithub.data.model.Repository
+import com.osenov.mygithub.data.model.RepositoryCommit
 import com.osenov.mygithub.data.model.RepositoryMoreInfo
 import com.osenov.mygithub.data.network.GithubClient
 import com.osenov.mygithub.data.network.LoginGithubClient
@@ -32,6 +33,10 @@ class DataManager @Inject constructor(
 
     fun getRepositoryMoreInfo(owner : String, name : String): Observable<RepositoryMoreInfo> {
         return githubClient.getRepositoryMoreInfo(owner, name)
+    }
+
+    fun getCommits(owner : String, name : String): Observable<ArrayList<RepositoryCommit>> {
+        return githubClient.getCommits(owner, name)
     }
 
 }

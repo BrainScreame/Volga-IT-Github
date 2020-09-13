@@ -1,7 +1,10 @@
 package com.osenov.mygithub.data.model
 
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import kotlinx.android.parcel.Parcelize
 
+@Parcelize
 data class Repository(
     @SerializedName("id")
     val id: Long,
@@ -16,4 +19,4 @@ data class Repository(
     val description: String?,
 
     var repositoryMoreInfo: RepositoryMoreInfo?
-)
+) : Parcelable

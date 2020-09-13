@@ -5,7 +5,7 @@ import androidx.recyclerview.widget.DiffUtil
 import com.osenov.mygithub.REPOSITORY_MORE_INFO
 import com.osenov.mygithub.data.model.Repository
 
-abstract class RepositoriesDiffIUtil(
+abstract class RepositoriesDiffIUtilAdapter(
     oldRepositories: List<Repository>,
     newRepositories: List<Repository>
 ) : DiffUtil.Callback() {

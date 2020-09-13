@@ -1,9 +1,14 @@
 package com.osenov.mygithub.data.model
 
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import kotlinx.android.parcel.Parcelize
 
-data class Owner(@SerializedName("login")
-val name: String,
+@Parcelize
+data class Owner(
+    @SerializedName("login")
+    val name: String,
 
-@SerializedName("avatar_url")
-val avatar: String)
+    @SerializedName("avatar_url")
+    val avatar: String
+) : Parcelable

@@ -2,6 +2,7 @@ package com.osenov.mygithub.di.component
 
 import com.osenov.mygithub.di.module.ActivityModule
 import com.osenov.mygithub.di.scope.PerActivity
+import com.osenov.mygithub.ui.detail_repository.DetailRepositoryActivity
 import com.osenov.mygithub.ui.login.LoginActivity
 import com.osenov.mygithub.ui.main.MainActivity
 import dagger.Subcomponent
@@ -11,4 +12,5 @@ import dagger.Subcomponent
 interface ActivityComponent {
     fun inject(loginActivity: LoginActivity)
     fun inject(mainActivity: MainActivity)
+    fun inject(detailRepositoryActivity: DetailRepositoryActivity)
 }

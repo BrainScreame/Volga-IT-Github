@@ -14,11 +14,13 @@
 
         <TextView
             android:id="@+id/textViewNameRepository"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/text_view_name_repository_margin_start"
             android:layout_marginTop="@dimen/text_view_name_repository_margin_top"
+            android:layout_marginEnd="16dp"
             android:textColor="@color/black"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="GitHub" />
@@ -35,72 +37,18 @@
             app:layout_constraintTop_toBottomOf="@+id/textViewNameRepository"
             tools:text="description description description description description description description description description description description description" />
 
-        <LinearLayout
+        <include
+            layout="@layout/item_more_info"
             android:id="@+id/linearLayoutMoreInfo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/linear_layout_more_info_margin_start"
             android:layout_marginTop="@dimen/linear_layout_more_info_margin_top"
             android:layout_marginEnd="@dimen/linear_layout_more_info_margin_end"
-            android:orientation="vertical"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textViewDescriptionRepository">
+            app:layout_constraintTop_toBottomOf="@+id/textViewDescriptionRepository" />
 
-            <LinearLayout
-                android:id="@+id/linearLayoutMoreInfoState"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:visibility="visible">
-
-                <TextView
-                    android:id="@+id/textViewLanguage"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:textColor="@color/black"
-                    app:drawableLeftCompat="@drawable/ic_dot"
-                    android:drawablePadding="@dimen/drawable_padding"
-                    tools:text="Language" />
-
-                <TextView
-                    android:id="@+id/textViewStars"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:textColor="@color/black"
-                    app:drawableLeftCompat="@drawable/ic_baseline_star_border_24"
-                    android:drawablePadding="@dimen/drawable_padding"
-                    tools:text="star"/>
-
-                <TextView
-                    android:id="@+id/textViewForks"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:textColor="@color/black"
-                    app:drawableLeftCompat="@drawable/ic_fork"
-                    android:drawablePadding="@dimen/drawable_padding"
-                    tools:text="fork" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/linearLayoutMoreInfoLoad"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center">
-
-                <ProgressBar
-                    android:id="@+id/progressBarMoreInfo"
-                    android:layout_width="@dimen/progress_bar_more_info"
-                    android:layout_height="@dimen/progress_bar_more_info"/>
-
-            </LinearLayout>
-
-
-        </LinearLayout>
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/imageViewUserAvatar"
@@ -109,7 +57,7 @@
             android:layout_marginStart="@dimen/image_view_user_avatar_margin_start"
             android:layout_marginTop="@dimen/image_view_user_avatar_margin_top"
             android:layout_marginBottom="@dimen/image_view_user_avatar_margin_bottom"
-            android:src="@mipmap/ic_image_github"
+            android:src="@drawable/ic_baseline_account_circle_24"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/linearLayoutMoreInfo" />
@@ -120,10 +68,10 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/text_view_user_name_margin_start"
             android:layout_marginTop="@dimen/text_view_user_name_margin_top"
-            tools:text="Jake Wharton"
             android:textColor="@color/black"
             app:layout_constraintStart_toEndOf="@+id/imageViewUserAvatar"
-            app:layout_constraintTop_toBottomOf="@+id/linearLayoutMoreInfo" />
+            app:layout_constraintTop_toBottomOf="@+id/linearLayoutMoreInfo"
+            tools:text="Jake Wharton" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.cardview.widget.CardView>

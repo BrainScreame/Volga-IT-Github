@@ -1,5 +1,6 @@
 package com.osenov.mygithub.ui.main
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.ProgressBar
@@ -9,8 +10,10 @@ import androidx.recyclerview.widget.RecyclerView
 import butterknife.BindView
 import butterknife.ButterKnife
 import com.osenov.mygithub.R
+import com.osenov.mygithub.REPOSITORY
 import com.osenov.mygithub.data.model.Repository
 import com.osenov.mygithub.ui.base.BaseActivity
+import com.osenov.mygithub.ui.detail_repository.DetailRepositoryActivity
 import javax.inject.Inject
 
 
@@ -60,7 +63,9 @@ class MainActivity : BaseActivity(), MainContract.View,
     }
 
     override fun onItemClickRepository(item: Repository, position: Int) {
-        Toast.makeText(this, item.name, Toast.LENGTH_LONG).show()
+        val intent = Intent(this, DetailRepositoryActivity::class.java)
+        intent.putExtra(REPOSITORY, item);
+        startActivity(intent)
     }
 
 }
