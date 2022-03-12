@@ -12,13 +12,12 @@ import javax.inject.Inject
 import kotlin.collections.ArrayList
 
 @ConfigPersistent
-class MainPresenter
-@Inject
-constructor(private val dataManager: DataManager) : MainContract.Presenter() {
+class MainPresenter @Inject constructor(
+    private val dataManager: DataManager
+) : MainContract.Presenter() {
 
     private var disposable: Disposable? = null
     private var repositories: ArrayList<Repository> = ArrayList()
-    private var indexCounter = 0
 
     override fun attachView(view: MainContract.View) {
         super.attachView(view)
@@ -35,6 +34,7 @@ constructor(private val dataManager: DataManager) : MainContract.Presenter() {
     }
 
     override fun showRepositoryList() {
+        var indexCounter = 0
         disposable?.dispose()
         indexCounter = 0
         disposable = dataManager.getRepositories()

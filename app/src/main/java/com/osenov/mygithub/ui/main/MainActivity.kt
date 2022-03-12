@@ -43,6 +43,8 @@ class MainActivity : BaseActivity(), MainContract.View,
     @BindView(R.id.toolbarRepositories)
     lateinit var toolbarRepositories: Toolbar
 
+    private val layoutManager by lazy(LazyThreadSafetyMode.NONE) { LinearLayoutManager(this) }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         activityComponent.inject(this)
@@ -57,6 +59,10 @@ class MainActivity : BaseActivity(), MainContract.View,
         ButterKnife.bind(this)
         presenter.attachView(this)
         setSupportActionBar(toolbarRepositories);
+        recyclerViewRepositories.layoutManager = layoutManager
+        recyclerViewRepositories.adapter = repositoriesAdapter
+        repositoriesAdapter.setOnItemClickListener(this)
+
     }
 
     override fun showError(message: String) {
@@ -68,11 +74,8 @@ class MainActivity : BaseActivity(), MainContract.View,
     override fun showRepositories(repositories: ArrayList<Repository>) {
         swipeRefreshLayoutRepositories.isRefreshing = false
         progressBar.visibility = View.GONE
-        recyclerViewRepositories.layoutManager = LinearLayoutManager(this)
         repositoriesAdapter.setData(repositories)
-        repositoriesAdapter.setOnItemClickListener(this)
-        repositoriesAdapter.notifyDataSetChanged()
-        recyclerViewRepositories.adapter = repositoriesAdapter
+
     }
 
     override fun updateItemRepository(index: Int, repository: Repository) {
@@ -96,14 +99,13 @@ class MainActivity : BaseActivity(), MainContract.View,
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when(item.itemId) {
+        when (item.itemId) {
             R.id.action_exit -> {
                 presenter.exitAccount()
             }
         }
         return true
     }
-
 
 
 }

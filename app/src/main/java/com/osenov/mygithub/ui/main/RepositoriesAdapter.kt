@@ -27,7 +27,7 @@ class RepositoriesAdapter
 @Inject constructor(@ActivityContext private val context: Context) :
     RecyclerView.Adapter<RepositoriesAdapter.ViewHolderRepositories>() {
 
-    private lateinit var repositories: ArrayList<Repository>
+    private var repositories: ArrayList<Repository> = ArrayList()
     private lateinit var clickListener: OnRepositoryItemClickListener
 
     fun setData(repositories: ArrayList<Repository>) {
