@@ -2,6 +2,7 @@ package com.osenov.mygithub.ui.main
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
@@ -13,17 +14,22 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import butterknife.BindView
 import butterknife.ButterKnife
+import com.apollographql.apollo.ApolloClient
 import com.osenov.mygithub.R
-import com.osenov.mygithub.REPOSITORY
 import com.osenov.mygithub.data.model.Repository
 import com.osenov.mygithub.ui.base.BaseActivity
 import com.osenov.mygithub.ui.detail_repository.DetailRepositoryActivity
 import com.osenov.mygithub.ui.login.LoginActivity
+import kotlinx.coroutines.*
 import javax.inject.Inject
 
 
 class MainActivity : BaseActivity(), MainContract.View,
     RepositoriesAdapter.OnRepositoryItemClickListener {
+
+    private val apolloClient = ApolloClient.builder()
+        .serverUrl("https://api.github.com/graphql")
+        .build()
 
     @Inject
     lateinit var presenter: MainPresenter
@@ -53,6 +59,11 @@ class MainActivity : BaseActivity(), MainContract.View,
         swipeRefreshLayoutRepositories.setOnRefreshListener {
             presenter.showRepositoryList()
         }
+
+
+        val job = Job()
+        val scope = CoroutineScope(job)
+
     }
 
     private fun init() {
@@ -89,7 +100,7 @@ class MainActivity : BaseActivity(), MainContract.View,
 
     override fun onItemClickRepository(item: Repository, position: Int) {
         val intent = Intent(this, DetailRepositoryActivity::class.java)
-        intent.putExtra(REPOSITORY, item);
+        intent.putExtra("REPOSITORY", item);
         startActivity(intent)
     }
 

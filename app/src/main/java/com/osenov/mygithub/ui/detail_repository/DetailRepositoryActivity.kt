@@ -62,7 +62,7 @@ class DetailRepositoryActivity : BaseActivity(), DetailRepositoryContract.View,
             onBackPressed()
         }
 
-        repository = intent.getParcelableExtra(REPOSITORY) as Repository
+        repository = intent.getParcelableExtra(REPOSITORY)!!
 
         Glide.with(this)
             .load(repository.owner.avatar)
