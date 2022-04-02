@@ -26,10 +26,6 @@ import javax.inject.Inject
 class MainActivity : BaseActivity(), MainContract.View,
     RepositoriesAdapter.OnRepositoryItemClickListener {
 
-    private val apolloClient = ApolloClient.builder()
-        .serverUrl("https://api.github.com/graphql")
-        .build()
-
     @Inject
     lateinit var presenter: MainPresenter
 
