@@ -20,7 +20,6 @@ import com.osenov.mygithub.data.model.Repository
 import com.osenov.mygithub.ui.base.BaseActivity
 import com.osenov.mygithub.ui.detail_repository.DetailRepositoryActivity
 import com.osenov.mygithub.ui.login.LoginActivity
-import kotlinx.coroutines.*
 import javax.inject.Inject
 
 
@@ -59,11 +58,6 @@ class MainActivity : BaseActivity(), MainContract.View,
         swipeRefreshLayoutRepositories.setOnRefreshListener {
             presenter.showRepositoryList()
         }
-
-
-        val job = Job()
-        val scope = CoroutineScope(job)
-
     }
 
     private fun init() {
